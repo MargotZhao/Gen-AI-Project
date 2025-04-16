@@ -146,6 +146,40 @@ Fine‑tune a distilled transformer (e.g., DistilBERT) for nuance & context.
 Add explainability (SHAP / LIME) to surface influential n‑grams per prediction.
 
 Deploy publicly on HuggingFace Spaces or Streamlit Community Cloud for wider feedback.
+
+## Appendix · Alternate‑Model Attempt (DistilBERT fine‑tune)
+
+“We also explored a transformer‑based approach to benchmark performance against the lightweight TF‑IDF + LogReg baseline.”
+
+Model tried | distilbert‑base‑uncased + new 4‑way soft‑max head
+
+Training subset | 500 tweets (train) / 100 tweets (val) – sampled from the same dataset
+
+Training setup
+
+Tokenised on‑the‑fly with the HF tokenizer (max len = 128)
+
+Mini‑batches = 16, AdamW (lr = 2 × 10⁻⁵)
+
+Epochs = 2 → ≈ 60 optimisation steps
+
+Result | Val accuracy ≈ 0.55 – 0.60 (below baseline)
+
+Key reasons for under‑performance
+
+Tiny data slice (500 samples) → transformer overfits quickly, lacks signal.
+
+Very short fine‑tuning (2 epochs) → insufficient adaptation of the classification head.
+
+No learning‑rate warm‑up / scheduling or class weighting tweaks.
+
+Streamlit integration — skipped, because the checkpoint wasn’t yet performant and wasn’t saved with model.save_pretrained(), so the app would have loaded a fresh, un‑tuned DistilBERT.
+
+Take‑away
+While transformers usually outperform linear models on full datasets, they require more data, epochs, and compute. Our quick probe confirms the trend; we therefore kept the TF‑IDF model as the primary demo and list the transformer path as a future enhancement:
+
+Next iteration: fine‑tune DistilBERT on the full 70 k‑tweet corpus (3‑5 epochs), save the checkpoint, and swap it into the Streamlit UI for a side‑by‑side comparison.
+
 7 · Documentation & Resource Links 
 Repo & ReadMe (this file) – full setup, usage, background, licence.
 
