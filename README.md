@@ -83,35 +83,69 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 ---
 
 
-5 · Model & Data Cards 
+### 5 · Model & Data Cards (bullet‑point edition)
+
 Model Card
-Field	Details
-Model	TF‑IDF Vectoriser → Logistic Regression
-Version	1.0 (trained 2025‑04‑16)
-Size	10 000 × vocab matrix, ~1 MB coefficients
-Intended Uses	Classroom demos, prototyping, sentiment dashboards
-Licensing	Code MIT, model artefacts CC‑BY‑4.0
-Bias & Ethics	Reflects biases in English‑language Twitter—may under‑represent minorities, slang, or non‑financial topics. Not suitable for high‑stakes decisions.
+
+Architecture: TF‑IDF vectoriser ➜ Logistic‑Regression classifier
+
+Version: v 1.0 — trained 📅 16 Apr 2025
+
+Footprint: 10 k × vocab matrix, ≈ 1 MB coefficients
+
+Intended uses:
+
+Classroom demos & tutorials
+
+Fast prototyping for sentiment features
+
+Lightweight dashboards / internal monitoring
+
+Licensing: Code 🪪 MIT • Model artefacts 🪪 CC‑BY‑4.0
+
+Bias & ethics:
+
+Mirrors English‑language Twitter biases → under‑represents minority slang & niche domains
+
+⚠️ Not recommended for high‑stakes or policy decisions
+
 Data Card
-Field	Details
-Source	Twitter Financial News & Entities (Kaggle, CC0)
-Size	Training ≈ 71 k tweets, Validation ≈ 2 k tweets
-Collection Period	2017‑2020
-Label Scheme	4‑class sentiment, crowdsourced & heuristic labels
-Known Issues	Class imbalance (Neutral > others), noisy labels, UK/US spelling variance
-6 · Critical Analysis 
-Impact – Demonstrates how even simple linear models deliver actionable insights in resource‑constrained settings (e.g., journalism classrooms, small businesses).
 
-Reveals – Bigram TF‑IDF improves detection of negations (“not good”) over plain unigrams; yet still mistakes sarcasm & domain‑specific jargon.
+Source: Twitter Financial News & Entities (Kaggle, CC0)
 
-Next Steps
+Size: ≈ 71 k training tweets • ≈ 2 k validation tweets
 
-Fine‑tune a distilled transformer (DistilBERT) for better nuance.
+Collection window: 2017 → 2020
 
-Add explainability (e.g., SHAP for feature importance).
+Label scheme: 4‑class sentiment (Positive, Negative, Neutral, Irrelevant) — mix of crowd & rule‑based labels
 
-Deploy on HuggingFace Spaces for public access.
+Known issues:
 
+Class imbalance (Neutral > others)
+
+Noisy / inconsistent labels
+
+UK vs US spelling variants + finance jargon
+
+### 6 · Critical Analysis (bullet‑point edition)
+
+Impact
+
+Shows that simple linear models can still yield actionable insights with scarce compute — ideal for classrooms, local newsrooms, small businesses.
+
+Key takeaways
+
+Adding bigrams in TF‑IDF boosts detection of negations (“not good”) vs unigrams.
+
+Model still struggles with sarcasm & domain‑specific slang — a common limitation of bag‑of‑words methods.
+
+Next steps
+
+Fine‑tune a distilled transformer (e.g., DistilBERT) for nuance & context.
+
+Add explainability (SHAP / LIME) to surface influential n‑grams per prediction.
+
+Deploy publicly on HuggingFace Spaces or Streamlit Community Cloud for wider feedback.
 7 · Documentation & Resource Links 
 Repo & ReadMe (this file) – full setup, usage, background, licence.
 
