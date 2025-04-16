@@ -1,34 +1,35 @@
 Twitter‑Sentiment Classifier 📊
 A lightweight, end‑to‑end demo for real‑time sentiment analysis in Streamlit
 
-### 1 · Problem Statement & Goal
+1 · Problem Statement & Goal
 
 - Need: Fast, no‑frills way to see how Twitter feels about a topic.
 
 - Solution: A one‑page Streamlit app (demo.py) that tags each tweet as Positive · Negative · Neutral · Irrelevant in real time.
+  
 
-### 2 · Methodology – at a glance
+2 · Methodology – at a glance
 
 Step	What we did	Why it matters
-Data	73 k tweets (Kaggle “Twitter Financial News & Entities”)	Four clear sentiment labels to learn from.
-Clean‑up	lower‑case → drop URLs, @ /@#, punctuation → trim spaces	Removes noise and keeps tokens meaningful.
-Features	TF‑IDF (unigrams + bigrams, top 10 k features, stop‑words off)	Captures local context, stays lightweight.
-Model	Logistic Regression (liblinear, class‑balanced)	Trains fast, easy to explain, strong baseline.
-Tuning	3‑fold grid‑search on C = 0.1 / 1 / 5	Finds the best regularisation for F1 / accuracy.
+- Data	73 k tweets (Kaggle “Twitter Financial News & Entities”)	Four clear sentiment labels to learn from.
+- Clean‑up	lower‑case → drop URLs, @ /@#, punctuation → trim spaces	Removes noise and keeps tokens meaningful.
+- Features	TF‑IDF (unigrams + bigrams, top 10 k features, stop‑words off)	Captures local context, stays lightweight.
+- Model	Logistic Regression (liblinear, class‑balanced)	Trains fast, easy to explain, strong baseline.
+- Tuning	3‑fold grid‑search on C = 0.1 / 1 / 5	Finds the best regularisation for F1 / accuracy.
 
 3 · Implementation & Demo 
-Single‑file app demo.py – trains (cached) and launches the UI.
+- Single‑file app demo.py – trains (cached) and launches the UI.
 
-Interactive UI
+- Interactive UI
 
-Type a tweet → instant sentiment prediction + class probabilities
+- Type a tweet → instant sentiment prediction + class probabilities
 
-Upload CSV → batch predictions, downloadable results
+- Upload CSV → batch predictions, downloadable results
 
-Validation metrics & confusion matrix under “See detailed metrics”
+- Validation metrics & confusion matrix under “See detailed metrics”
 
-Zero config – only pip install -r requirements.txt and
-streamlit run demo.py.
+- Zero config – only pip install -r requirements.txt and
+- streamlit run demo.py.
 
 4 · Assessment & Evaluation
 Metric (validation set)	Score
@@ -108,17 +109,17 @@ Impact: Linear baseline gives actionable insights with almost no compute—great
 
 Key takeaways:
 
-Bigrams help catch negations (“not good”).
+- Bigrams help catch negations (“not good”).
 
-Still weak on sarcasm & niche jargon.
+- Still weak on sarcasm & niche jargon.
 
 Next steps:
 
-Fine‑tune DistilBERT for richer context.
+- Fine‑tune DistilBERT for richer context.
 
-Add SHAP / LIME for explainability.
+- Add SHAP / LIME for explainability.
 
-Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
+- Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
 
 ### Appendix · Transformer Trial (DistilBERT)
 
