@@ -1,8 +1,8 @@
 🧠 Tweet Sentiment Classification using DistilBERT
-1. 📌 Problem Statement & Overview (10 pts)
+1. 📌 Problem Statement & Overview 
 This project tackles the task of tweet sentiment classification using a fine-tuned Transformer model. The objective is to categorize tweets into four sentiment classes — Positive, Negative, Neutral, and Irrelevant. This serves as a demonstration of how transformer-based models can be used for real-world social media text classification with high performance and fast training on limited data.
 
-2. 🔬 Methodology (50 pts)
+2. 🔬 Methodology 
 We employed a pre-trained DistilBERT model (distilbert-base-uncased) from Hugging Face and fine-tuned it on a reduced Twitter dataset with the following steps:
 
 Data Sampling: Downsampled to 500 training and 100 validation samples for faster testing.
@@ -21,7 +21,7 @@ Training: Ran for 2 epochs using DataLoader with batch size = 16 (training) and 
 
 Evaluation: Computed accuracy and detailed classification report (precision, recall, F1).
 
-3. ⚙️ Implementation & Demo (20 pts)
+3. ⚙️ Implementation & Demo 
 Implementation is completed entirely in PyTorch with the Hugging Face Transformers library.
 
 📄 All model training steps, from preprocessing to evaluation, are included in the notebook.
@@ -32,10 +32,12 @@ Implementation is completed entirely in PyTorch with the Hugging Face Transforme
 
 🚀 Training and inference logic are modular and ready for deployment or Streamlit integration.
 
-4. 📊 Assessment & Evaluation (15 pts)
+4. 📊 Assessment & Evaluation
 The model was evaluated on 100 validation tweets. Metrics include:
 
-Accuracy: ~49% (due to limited dataset)
+Accuracy: ~43% (due to limited dataset)
+![image](https://github.com/user-attachments/assets/5dea5a1f-d8f2-427b-adf0-75512baa96b2)
+
 
 Classification Report: Includes F1-score, precision, recall per class
 
@@ -47,7 +49,7 @@ Struggled with the Irrelevant class, likely due to limited examples.
 
 Future improvements could include full dataset training, longer training epochs, and experimenting with other models (e.g., bert-base-uncased, RoBERTa).
 
-5. 🗂️ Model & Data Cards (5 pts)
+5. 🗂️ Model & Data Cards 
 Model: distilbert-base-uncased, fine-tuned using Hugging Face
 
 Dataset: Twitter Entity Sentiment Dataset from Kaggle
@@ -64,7 +66,7 @@ No personal identifiers were used.
 
 Future versions should explore fairness metrics and explainability.
 
-6. 💡 Critical Analysis (10 pts)
+6. 💡 Critical Analysis 
 What is the impact?
 Demonstrates how BERT-based models can generalize well even on small datasets.
 
@@ -79,7 +81,7 @@ Apply model to real-time tweet streams
 
 Explore topic clustering and sentiment drift over time
 
-7. 📁 Documentation & Resource Links (5 pts)
+7. 📁 Documentation & Resource Links 
 Repo & ReadMe: ✔️ This file includes a structured description of the entire project.
 
 Install Requirements:
