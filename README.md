@@ -103,7 +103,7 @@ Known issues:
 
 
 
-### 6 · Critical Analysis
+6 · Critical Analysis
 
 Impact: Linear baseline gives actionable insights with almost no compute—great for classrooms, newsrooms, small businesses.
 
@@ -121,7 +121,7 @@ Next steps:
 
 - Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
 
-### Appendix – DistilBERT Quick Probe
+7. Additional Attempts - DistilBERT Quick Probe
 
 Aspect	Summary
 - Model	distilbert‑base‑uncased with a new 4‑class soft‑max layer
