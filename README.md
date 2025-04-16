@@ -34,11 +34,20 @@ Accuracy	≈ 0.77
 Macro F1	≈ 0.74
 Confusion‑matrix	Displayed in app
 Performance meets or exceeds typical classical baselines on this dataset. Misclassifications mostly occur between Neutral and Irrelevant—highlighted in critical analysis below.
-![image](https://github.com/user-attachments/assets/77783726-4a5b-4c40-9f9f-a8c5c3f15f9d)
+### Validation metrics  
+| Class | Precision | Recall | F1‑score | Support |
+|-------|-----------|--------|----------|---------|
+| Irrelevant | 0.67 | 0.64 | 0.66 | 172 |
+| Negative   | 0.67 | 0.78 | 0.72 | 266 |
+| Neutral    | 0.74 | 0.60 | 0.66 | 285 |
+| Positive   | 0.73 | 0.78 | 0.76 | 277 |
+| **Accuracy** | – | – | **0.705** | 1 000 |
+| **Macro avg** | 0.70 | 0.70 | 0.70 | 1 000 |
+| **Weighted avg** | 0.71 | 0.70 | 0.70 | 1 000 |
 ### ROC analysis  
 Because ROC curves require a binary condition, we display **Positive vs (all other classes)**:
 
-![ROC curve](assets/roc_positive_vs_others.png)
+![image](https://github.com/user-attachments/assets/31153bac-4603-4575-bee9-28e28b3ac6ea)
 
 *Area‑under‑curve (AUC) = **0.96** → the classifier distinguishes Positive tweets extremely well.*
 
