@@ -9,7 +9,6 @@ A lightweight, end‑to‑end demo for real‑time sentiment analysis in Streaml
 
 - Solution: A one‑page Streamlit app (demo.py) that tags each tweet as Positive · Negative · Neutral · Irrelevant in real time.
   
----
 
 ### 2 · Methodology – at a glance
 
@@ -63,8 +62,6 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 - Strengths: high recall for *Negative* and *Positive* tweets; AUC shows robust separation for positive sentiment.  
 - Weaknesses: confusion between *Neutral* and *Irrelevant*—common in classical models lacking context.  
 - Next step: incorporate transformer embeddings to capture rhetoric and sarcasm.
-
----
 
 
 ### 5 · Model Card & Data Card
@@ -124,6 +121,8 @@ Next steps:
 
 - Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
 
+---
+
 ### 7. Additional Attempts - DistilBERT Quick Probe
 
 Aspect	Summary
@@ -143,6 +142,8 @@ Key takeaway
 Next step (future work): train DistilBERT on the entire dataset for 3‑5 epochs, save the checkpoint, and plug it into the Streamlit UI for a side‑by‑side comparison.
 Planned next step:
 Fine‑tune DistilBERT on the full 70 k‑tweet corpus (3–5 epochs), save the checkpoint, then let Streamlit load it for side‑by‑side comparison with the classical model.
+
+---
 
 ### 8 · Documentation & Resource Links 
 Repo & ReadMe (this file) – full setup, usage, background, licence.
