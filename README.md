@@ -141,7 +141,7 @@ Next step (future work): train DistilBERT on the entire dataset for 3‑5 epoch
 Planned next step:
 Fine‑tune DistilBERT on the full 70 k‑tweet corpus (3–5 epochs), save the checkpoint, then let Streamlit load it for side‑by‑side comparison with the classical model.
 
-7 · Documentation & Resource Links 
+8 · Documentation & Resource Links 
 Repo & ReadMe (this file) – full setup, usage, background, licence.
 
 Key Resources
