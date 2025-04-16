@@ -56,9 +56,9 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 
 **Interpretation**
 
-* Strengths: high recall for *Negative* and *Positive* tweets; AUC shows robust separation for positive sentiment.  
-* Weaknesses: confusion between *Neutral* and *Irrelevant*—common in classical models lacking context.  
-* Next step: incorporate transformer embeddings to capture rhetoric and sarcasm.
+- Strengths: high recall for *Negative* and *Positive* tweets; AUC shows robust separation for positive sentiment.  
+- Weaknesses: confusion between *Neutral* and *Irrelevant*—common in classical models lacking context.  
+- Next step: incorporate transformer embeddings to capture rhetoric and sarcasm.
 
 ---
 
@@ -67,41 +67,41 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 
 Model Card (v 1.0, 16 Apr 2025)
 
-Architecture: TF‑IDF → Logistic‑Regression
+- Architecture: TF‑IDF → Logistic‑Regression
 
-Size: ≈ 1 MB (10 k‑term matrix)
+- Size: ≈ 1 MB (10 k‑term matrix)
 
 Intended use:
 
-Classroom demos & tutorials
+- Classroom demos & tutorials
 
-Quick sentiment prototypes
+- Quick sentiment prototypes
 
-Lightweight dashboards
+- Lightweight dashboards
 
 License: Code MIT · Weights CC‑BY‑4.0
 
 Bias / limits:
 
-Mirrors English‑Twitter bias; minority slang under‑represented
+- Mirrors English‑Twitter bias; minority slang under‑represented
 
 ⚠️ Not for high‑stakes decisions
 
 Data Card
 
-Source: Twitter Financial News & Entities (Kaggle, CC0)
+- Source: Twitter Financial News & Entities (Kaggle, CC0)
 
-Split: 71 k train · 2 k val (2017–2020)
+- Split: 71 k train · 2 k val (2017–2020)
 
-Labels: 4‑class sentiment (Pos / Neg / Neu / Irr)
+- Labels: 4‑class sentiment (Pos / Neg / Neu / Irr)
 
 Known issues:
 
-Neutral class dominates
+- Neutral class dominates
 
-Noisy / inconsistent labels
+- Noisy / inconsistent labels
 
-UK vs US spelling, finance jargon
+
 
 ### 6 · Critical Analysis
 
