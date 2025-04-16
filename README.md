@@ -1,12 +1,15 @@
 ### Twitter‑Sentiment Classifier 📊
 A lightweight, end‑to‑end demo for real‑time sentiment analysis in Streamlit
 
+---
+
 ### 1 · Problem Statement & Goal
 
 - Need: Fast, no‑frills way to see how Twitter feels about a topic.
 
 - Solution: A one‑page Streamlit app (demo.py) that tags each tweet as Positive · Negative · Neutral · Irrelevant in real time.
   
+---
 
 ### 2 · Methodology – at a glance
 
