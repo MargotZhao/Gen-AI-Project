@@ -63,7 +63,7 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 ---
 
 
-### 5 · Model Card & Data Card
+5 · Model Card & Data Card
 
 Model Card (v 1.0, 16 Apr 2025)
 
