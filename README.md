@@ -1,41 +1,20 @@
 Twitter‑Sentiment Classifier 📊
 A lightweight, end‑to‑end demo for real‑time sentiment analysis in Streamlit
 
-1 · Problem Statement & Overview
-Online public opinion shifts rapidly—businesses, journalists, and policymakers need simple tools to gauge sentiment at scale.
-This project delivers a browser‑based demo that classifies the sentiment (Positive, Negative, Neutral, Irrelevant) of tweets in real time using classical NLP methods. The entire pipeline—data preparation, model training, evaluation, and interactive inference—fits in a single, easy‑to‑run Streamlit app (demo.py).
+## 1 · Problem Statement & Goal
 
-2 · Methodology
-Methodology ― key moves at a glance
-Dataset
+Need: Fast, no‑frills way to see how Twitter feels about a topic.
 
-Twitter Financial News & Entities (Kaggle, train + val splits)
+Solution: A one‑page Streamlit app (demo.py) that tags each tweet as Positive · Negative · Neutral · Irrelevant in real time.
 
-→ gives us ~73 k labelled tweets covering four sentiment classes.
+## 2 · Methodology – at a glance
 
-Text cleaning
-
-lower‑case → strip URLs → drop @mentions/#hashtags → remove punctuation → squash extra spaces
-
-→ cuts noise & sparsity; leaves only meaningful tokens.
-
-Vectorisation
-
-TF‑IDF with unigrams + bigrams, max_features = 10 000, English stop‑words removed
-
-→ preserves local n‑gram context while staying lightweight & interpretable.
-
-Classifier
-
-Logistic Regression (solver = liblinear, class_weight = balanced)
-
-→ quick to train, easy to explain, strong baseline for text.
-
-Hyper‑parameter tuning
-
-3‑fold grid‑search over C ∈ {0.1, 1, 5}
-
-→ picks optimal regularisation (best F1 / accuracy).
+Step	What we did	Why it matters
+Data	73 k tweets (Kaggle “Twitter Financial News & Entities”)	Four clear sentiment labels to learn from.
+Clean‑up	lower‑case → drop URLs, @ /@#, punctuation → trim spaces	Removes noise and keeps tokens meaningful.
+Features	TF‑IDF (unigrams + bigrams, top 10 k features, stop‑words off)	Captures local context, stays lightweight.
+Model	Logistic Regression (liblinear, class‑balanced)	Trains fast, easy to explain, strong baseline.
+Tuning	3‑fold grid‑search on C = 0.1 / 1 / 5	Finds the best regularisation for F1 / accuracy.
 
 3 · Implementation & Demo 
 Single‑file app demo.py – trains (cached) and launches the UI.
@@ -83,102 +62,80 @@ Because ROC curves require a binary condition, we display **Positive vs (all o
 ---
 
 
-### 5 · Model & Data Cards (bullet‑point edition)
+### 5 · Model Card & Data Card
 
-Model Card
+Model Card (v 1.0, 16 Apr 2025)
 
-Architecture: TF‑IDF vectoriser ➜ Logistic‑Regression classifier
+Architecture: TF‑IDF → Logistic‑Regression
 
-Version: v 1.0 — trained 📅 16 Apr 2025
+Size: ≈ 1 MB (10 k‑term matrix)
 
-Footprint: 10 k × vocab matrix, ≈ 1 MB coefficients
-
-Intended uses:
+Intended use:
 
 Classroom demos & tutorials
 
-Fast prototyping for sentiment features
+Quick sentiment prototypes
 
-Lightweight dashboards / internal monitoring
+Lightweight dashboards
 
-Licensing: Code 🪪 MIT • Model artefacts 🪪 CC‑BY‑4.0
+License: Code MIT · Weights CC‑BY‑4.0
 
-Bias & ethics:
+Bias / limits:
 
-Mirrors English‑language Twitter biases → under‑represents minority slang & niche domains
+Mirrors English‑Twitter bias; minority slang under‑represented
 
-⚠️ Not recommended for high‑stakes or policy decisions
+⚠️ Not for high‑stakes decisions
 
-Data Card
+Data Card
 
-Source: Twitter Financial News & Entities (Kaggle, CC0)
+Source: Twitter Financial News & Entities (Kaggle, CC0)
 
-Size: ≈ 71 k training tweets • ≈ 2 k validation tweets
+Split: 71 k train · 2 k val (2017–2020)
 
-Collection window: 2017 → 2020
-
-Label scheme: 4‑class sentiment (Positive, Negative, Neutral, Irrelevant) — mix of crowd & rule‑based labels
+Labels: 4‑class sentiment (Pos / Neg / Neu / Irr)
 
 Known issues:
 
-Class imbalance (Neutral > others)
+Neutral class dominates
 
 Noisy / inconsistent labels
 
-UK vs US spelling variants + finance jargon
+UK vs US spelling, finance jargon
 
-### 6 · Critical Analysis (bullet‑point edition)
+### 6 · Critical Analysis
 
-Impact
+Impact: Linear baseline gives actionable insights with almost no compute—great for classrooms, newsrooms, small businesses.
 
-Shows that simple linear models can still yield actionable insights with scarce compute — ideal for classrooms, local newsrooms, small businesses.
+Key takeaways:
 
-Key takeaways
+Bigrams help catch negations (“not good”).
 
-Adding bigrams in TF‑IDF boosts detection of negations (“not good”) vs unigrams.
+Still weak on sarcasm & niche jargon.
 
-Model still struggles with sarcasm & domain‑specific slang — a common limitation of bag‑of‑words methods.
+Next steps:
 
-Next steps
+Fine‑tune DistilBERT for richer context.
 
-Fine‑tune a distilled transformer (e.g., DistilBERT) for nuance & context.
+Add SHAP / LIME for explainability.
 
-Add explainability (SHAP / LIME) to surface influential n‑grams per prediction.
+Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
 
-Deploy publicly on HuggingFace Spaces or Streamlit Community Cloud for wider feedback.
+### Appendix · Transformer Trial (DistilBERT)
 
-## Appendix · Alternate‑Model Attempt (DistilBERT fine‑tune)
+Item	Details
+Model	distilbert‑base‑uncased + new 4‑class soft‑max head
+Data used	500 training tweets · 100 validation tweets (sampled)
+Training setup	HF tokenizer (max_len = 128) · batch 16 · AdamW lr 2e‑5 · 2 epochs (~60 steps)
+Result	Validation accuracy ≈ 0.57 → worse than TF‑IDF baseline
+Why low?	• Too little data → easy over‑fit
+• Only 2 epochs → head barely fine‑tuned
+• No LR warm‑up / scheduling · no class weighting
+Streamlit status	Not integrated—checkpoint wasn’t saved because performance was still poor.
+Take‑away:
+Transformers can beat linear models when given enough data + training time. This quick probe confirms the need for more resources, so TF‑IDF + LogReg remains the main demo for now.
 
-“We also explored a transformer‑based approach to benchmark performance against the lightweight TF‑IDF + LogReg baseline.”
-
-Model tried | distilbert‑base‑uncased + new 4‑way soft‑max head
-
-Training subset | 500 tweets (train) / 100 tweets (val) – sampled from the same dataset
-
-Training setup
-
-Tokenised on‑the‑fly with the HF tokenizer (max len = 128)
-
-Mini‑batches = 16, AdamW (lr = 2 × 10⁻⁵)
-
-Epochs = 2 → ≈ 60 optimisation steps
-
-Result | Val accuracy ≈ 0.55 – 0.60 (below baseline)
-
-Key reasons for under‑performance
-
-Tiny data slice (500 samples) → transformer overfits quickly, lacks signal.
-
-Very short fine‑tuning (2 epochs) → insufficient adaptation of the classification head.
-
-No learning‑rate warm‑up / scheduling or class weighting tweaks.
-
-Streamlit integration — skipped, because the checkpoint wasn’t yet performant and wasn’t saved with model.save_pretrained(), so the app would have loaded a fresh, un‑tuned DistilBERT.
-
-Take‑away
-While transformers usually outperform linear models on full datasets, they require more data, epochs, and compute. Our quick probe confirms the trend; we therefore kept the TF‑IDF model as the primary demo and list the transformer path as a future enhancement:
-
-Next iteration: fine‑tune DistilBERT on the full 70 k‑tweet corpus (3‑5 epochs), save the checkpoint, and swap it into the Streamlit UI for a side‑by‑side comparison.
+Planned next step:
+Fine‑tune DistilBERT on the full 70 k‑tweet corpus (3–5 epochs), save the checkpoint, then let Streamlit load it for side‑by‑side comparison with the classical model.
 
 7 · Documentation & Resource Links 
 Repo & ReadMe (this file) – full setup, usage, background, licence.
