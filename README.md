@@ -121,20 +121,19 @@ Next steps:
 
 - Publish a public demo on HuggingFace Spaces or Streamlit Cloud.
 
-### Appendix · Transformer Trial (DistilBERT)
+### Appendix – DistilBERT Quick Probe
 
-Item	Details
-Model	distilbert‑base‑uncased + new 4‑class soft‑max head
-Data used	500 training tweets · 100 validation tweets (sampled)
-Training setup	HF tokenizer (max_len = 128) · batch 16 · AdamW lr 2e‑5 · 2 epochs (~60 steps)
-Result	Validation accuracy ≈ 0.57 → worse than TF‑IDF baseline
-Why low?	• Too little data → easy over‑fit
-• Only 2 epochs → head barely fine‑tuned
-• No LR warm‑up / scheduling · no class weighting
-Streamlit status	Not integrated—checkpoint wasn’t saved because performance was still poor.
-Take‑away:
-Transformers can beat linear models when given enough data + training time. This quick probe confirms the need for more resources, so TF‑IDF + LogReg remains the main demo for now.
-
+Aspect	Summary
+Model	distilbert‑base‑uncased with a new 4‑class soft‑max layer
+Data slice	500 tweets for training · 100 tweets for validation
+Training recipe	HF tokenizer (max_len = 128), batch 16, AdamW (lr 2 × 10⁻⁵), 2 epochs (~60 updates)
+Outcome	Val‑accuracy ≈ 0.57 → below the TF‑IDF + LogReg baseline
+Why under‑performed?	- Tiny dataset → over‑fits
+- Only 2 epochs → head barely adapts
+- No LR warm‑up / scheduler · no class weighting
+Streamlit status	Not shipped – checkpoint wasn’t worth saving / loading
+Key takeaway	Transformers need more data and epochs to shine. Until we fine‑tune on the full ~70 k tweets, the TF‑IDF + LogReg model stays as the primary demo.
+Next step (future work): train DistilBERT on the entire dataset for 3‑5 epochs, save the checkpoint, and plug it into the Streamlit UI for a side‑by‑side comparison.
 Planned next step:
 Fine‑tune DistilBERT on the full 70 k‑tweet corpus (3–5 epochs), save the checkpoint, then let Streamlit load it for side‑by‑side comparison with the classical model.
 
