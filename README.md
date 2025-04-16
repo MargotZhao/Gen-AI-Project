@@ -1,4 +1,4 @@
-#### Twitter‑Sentiment Classifier 📊
+### Twitter‑Sentiment Classifier 📊
 A lightweight, end‑to‑end demo for real‑time sentiment analysis in Streamlit
 
 ### 1 · Problem Statement & Goal
